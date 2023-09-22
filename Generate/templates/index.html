@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Certificate Generator</title>
+</head>
+
+<body>
+    <header>
+        <img src="static/Certificate Form Logo.jpg" alt="Digital India Logo">
+        <h2>Generate your Certificate here</h2>
+    </header>
+
+    <div class="input-container">
+        <label for="name">Enter Name :</label>
+        <input type="text" id="name" placeholder="Donald Trump" required>
+        <br><br>
+
+        <label for="email">Enter Email :</label>
+        <input type="text" id="email" placeholder="Enter your email here">
+        <br><br>
+
+        <label for="phnumber">Enter Contact Number :</label>
+        <input type="number" id="phnumber" placeholder="Enter your contact number here">
+        <br><br>
+
+        <label for="coursename">Enter Course Name :</label>
+        <input type="text" id="coursename" placeholder="Type your course name here">
+        <br><br>
+
+        <label for="courseid">Enter Course Id :</label>
+        <input type="text" id="courseid" placeholder="Type your course id here">
+        <br><br>
+
+        <label for="instname">Enter Institute Name and City :</label>
+        <input type="text" id="instname" placeholder="Enter name comma city here">
+        <br><br>
+
+        <label for="startdate">Enter Course Start Date :</label>
+        <input type="date" id="startdate" placeholder="Enter the start date here">
+        <br><br>
+
+        <label for="enddate">Enter Course Completion Date :</label>
+        <input type="date" id="enddate" placeholder="Enter the end date here">
+        <br><br>
+
+        <button onclick="generateCertificate()">Generate Now</button>
+    </div>
+
+    <a id="downloadLink" style="display: none;" download="Course Completion Certificate.png">
+        <button id="downloadButton">Download Certificate</button>
+    </a>
+
+    <canvas id="certificateCanvas" style="display: none;"></canvas>
+
+    <script src="static/script.js"></script>
+</body>
+
+</html>

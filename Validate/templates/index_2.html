@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Certificate and Form</title>
+</head>
+<body>
+    <h1>Upload Certificate and Fill Form</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <<label for="name">Enter Name :</label>
+        <input type="text" name="name" id="name" placeholder="Donald Trump" required>
+        <br><br>
+
+        <label for="email">Enter Email :</label>
+        <input type="text" name="email" id="email" placeholder="Enter your email here">
+        <br><br>
+
+        <label for="phnumber">Enter Contact Number :</label>
+        <input type="number" name="phnumber" id="phnumber" placeholder="Enter your contact number here">
+        <br><br>
+
+        <label for="coursename">Enter Course Name :</label>
+        <input type="text" name="coursename" id="coursename" placeholder="Type your course name here">
+        <br><br>
+
+        <label for="courseid">Enter Course Id :</label>
+        <input type="text" name="courseid" id="courseid" placeholder="Type your course id here">
+        <br><br>
+
+        <label for="instname">Enter Institute Name and City :</label>
+        <input type="text" name="instname" id="instname" placeholder="Enter name comma city here">
+        <br><br>
+
+        <label for="startdate">Enter Course Start Date :</label>
+        <input type="date" name="startdate" id="startdate" placeholder="Enter the start date here">
+        <br><br>
+
+        <label for="enddate">Enter Course Completion Date :</label>
+        <input type="date" name="enddate" id="enddate" placeholder="Enter the end date here">
+        <br><br>
+        
+        <label for="certificate">Upload Certificate:</label>
+        <input type="file" id="certificate" name="certificate" accept=".png, .jpg, .jpeg" required><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
