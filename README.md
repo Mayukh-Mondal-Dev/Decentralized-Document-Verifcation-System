@@ -46,7 +46,6 @@ This will start the application on http://127.0.0.1:5000/ by default.
 Access the Web Application:
 ![main1](https://github.com/Mayukh-Mondal-Dev/Decentralized-Document-Verifcation-System/assets/103057066/781fec20-4dab-44ed-a5e6-969455b1a3b8)
 
-Open your web browser and navigate to http://127.0.0.1:5000/ to access the blockchain web application.
 
 Adding a Certificate:
 
@@ -121,7 +120,6 @@ The application will run on the default port 5000.
 Access the Web Application:
 ![main2](https://github.com/Mayukh-Mondal-Dev/Decentralized-Document-Verifcation-System/assets/103057066/db373f69-0bfc-47a6-9489-0465c03ed46a)
 
-Open your web browser and navigate to http://127.0.0.1:5000/ to access the certificate validation web application.
 
 Certificate Validation:
 
