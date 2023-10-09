@@ -62,6 +62,7 @@ Ensure you have the required Python packages installed. You can install them usi
 The application relies on a private key for decrypting certificate data. Ensure that the private_key.pem file is present in the project directory. If it's missing, provide your private key and save it as private_key.pem.
 
 Access the Web Application:
+
 ![main2](https://github.com/Mayukh-Mondal-Dev/Decentralized-Document-Verifcation-System/assets/103057066/db373f69-0bfc-47a6-9489-0465c03ed46a)
 
 
