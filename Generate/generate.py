@@ -314,11 +314,23 @@ def add_block():
         )
     return redirect(url_for("index"))
 
+@app.route('/api/query', methods=['POST'])
+def process_query():
+    query = request.json['query']
 
-@app.route("/validate_block", methods=["POST"])
-def validate_block():
-    # TODO: validate the certificate
-    pass
+    # Connect to the SQLite database
+    conn = sqlite3.connect('logs.db')
+    c = conn.cursor()
+
+    # Execute the query
+    c.execute(query)
+    result = c.fetchall()
+
+    # Close the database connection
+    conn.close()
+
+    # Return the query results
+    return jsonify(result)
 
 
 if __name__ == "__main__":

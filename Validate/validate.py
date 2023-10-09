@@ -15,6 +15,7 @@ import cv2
 from pyzbar.pyzbar import decode
 from flask_cors import CORS, cross_origin
 import json
+import requests
 
 port = "5050"
 
@@ -54,20 +55,20 @@ def read_qr_code(image_path):
         return None
 
 
-def is_data_present(conn, data_to_check):
+def is_data_present(data_to_check):
     try:
-        c = conn.cursor()
-        query = "SELECT COUNT(*) FROM blocks WHERE encrypted_data = ?"
-        c.execute(query, (data_to_check,))
-        result = c.fetchone()[0]
+        #c = conn.cursor()
+        query = f"SELECT COUNT(*) FROM blocks WHERE encrypted_data = '{data_to_check}'"
+        response = requests.post('http://localhost:5000/api/query', json={'query': query})
+        result = response.json()
 
-        if result > 0:
+        if result[0][0] > 0:
             return True
         else:
             return False
 
-    except sqlite3.Error as e:
-        print("SQLite error:", e)
+    except requests.exceptions.RequestException as e:
+        print("Request error:", e)
         return False
 
 
@@ -88,18 +89,16 @@ def decrypt_data(encrypted_data_hex, private_key):
 
 
 def get_current_hash(encrypted_data):
-    conn = sqlite3.connect('../Generate/logs.db')
-    c = conn.cursor()
+    # conn = sqlite3.connect('../Generate/logs.db')
+    # c = conn.cursor()
 
     # Execute the SQL query to fetch the current_hash from the database
-    c.execute("SELECT current_hash FROM blocks WHERE encrypted_data=?",
-              (encrypted_data,))
-    result = c.fetchone()
-
-    conn.close()
+    query = f"SELECT current_hash FROM blocks WHERE encrypted_data = '{encrypted_data}'"
+    response = requests.post('http://localhost:5000/api/query', json={'query': query})
+    result = response.json()
 
     if result:
-        return result[0]  # Return the value of the current_hash column
+        return result[0][0]  # Return the value of the current_hash column
     else:
         return None  # Return None if no row is found for the encrypted data
 
@@ -140,10 +139,10 @@ def index():
 
         private_key = load_private_key()
 
-        db_path = "../Generate/logs.db"
-        conn = sqlite3.connect(db_path)
+        # db_path = "../Generate/logs.db"
+        # conn = sqlite3.connect(db_path)
         # Check if the QR code content exists in the database
-        if is_data_present(conn, encrypted_data):
+        if is_data_present(encrypted_data):
             real_data = decrypt_data(encrypted_data, private_key)
             print(encrypted_data)
             print(real_data)
