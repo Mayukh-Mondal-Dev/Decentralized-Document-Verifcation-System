@@ -76,3 +76,74 @@ If you want to reset the blockchain, delete the logs.db file, private_key.pem, p
 Deployment:
 
 If you want to deploy this application to a production environment, consider using a production-ready web server, such as Gunicorn or uWSGI, and configure a reverse proxy like Nginx or Apache.
+
+
+
+<h1>Validation Steps: </h1>
+Prerequisites:
+
+Python 3.x installed on your system.
+
+Basic understanding of Python, Flask, SQLite, and QR code decoding.
+
+Ensure you have the required Python packages installed. You can install them using pip:
+
+Copy code
+pip install Flask cryptography opencv-python-headless pyzbar flask-cors
+Steps:
+
+Clone the Repository:
+
+Clone the repository to your local machine using Git:
+
+bash
+Copy code
+git clone https://github.com/yourusername/certificate-validation-app.git
+Replace yourusername with your actual GitHub username.
+
+Navigate to the Project Directory:
+
+bash
+Copy code
+cd certificate-validation-app
+Load Private Key:
+
+The application relies on a private key for decrypting certificate data. Ensure that the private_key.pem file is present in the project directory. If it's missing, provide your private key and save it as private_key.pem.
+
+Run the Application:
+
+Start the Flask application by running:
+
+Copy code
+python app.py
+The application will run on the default port 5000.
+
+Access the Web Application:
+![main2](https://github.com/Mayukh-Mondal-Dev/Decentralized-Document-Verifcation-System/assets/103057066/db373f69-0bfc-47a6-9489-0465c03ed46a)
+
+Open your web browser and navigate to http://127.0.0.1:5000/ to access the certificate validation web application.
+
+Certificate Validation:
+
+Click on the "Choose File" button to upload a certificate image file containing a QR code.
+Fill in the certificate details in the form, including course ID, course name, email, end date, institution name, name, phone number, and start date.
+Click the "Submit" button.
+The application will decode the QR code from the uploaded certificate image, compare the extracted data with the entered certificate details, and validate the certificate's authenticity.
+
+Validation Result:
+
+If the certificate data matches the decoded QR code content, the certificate is considered valid. The application will return the digital signature associated with the certificate.
+If the data does not match or the certificate is not found in the database, the application will display a "not valid" message.
+Customization:
+
+You can customize the application by modifying the HTML templates in the templates folder or by extending its functionality as needed.
+Deployment:
+
+If you intend to deploy this application in a production environment, consider using a production-ready web server such as Gunicorn or uWSGI and configure a reverse proxy like Nginx or Apache.
+
+Shutdown the Application:
+To stop the Flask application, press Ctrl + C in the terminal where the application is running.
+
+Cleanup:
+If needed, you can remove uploaded certificate images from the static/uploads directory to free up storage.
+
