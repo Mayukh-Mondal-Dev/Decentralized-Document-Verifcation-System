@@ -115,7 +115,7 @@ Start the Flask application by running:
 
 Copy code
 python app.py
-The application will run on the default port 5000.
+The application will run on the default port 5050.
 
 Access the Web Application:
 ![main2](https://github.com/Mayukh-Mondal-Dev/Decentralized-Document-Verifcation-System/assets/103057066/db373f69-0bfc-47a6-9489-0465c03ed46a)
