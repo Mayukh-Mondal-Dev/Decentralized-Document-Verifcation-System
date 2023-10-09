@@ -11,39 +11,11 @@ Basic understanding of Python, Flask, and SQLite.
 
 Ensure you have the required Python packages installed. You can install them using pip:
 
-Copy code
-pip install Flask cryptography qrcode opencv-python-headless flask-cors
-<h3>Steps:</h3>
-
-Clone the Repository:
-
-Clone the repository to your local machine using Git:
-
-bash
-Copy code
-git clone https://github.com/yourusername/blockchain-web-app.git
-Replace yourusername with your actual GitHub username.
-
-Navigate to the Project Directory:
-
-bash
-Copy code
-cd blockchain-web-app
-Generate Key Pairs:
-
 The application uses public-key cryptography for encryption. It generates key pairs for encryption and stores them in private_key.pem and public_key.pem files. Run the following command to generate the keys:
 
-Copy code
-python app.py
-Run the Application:
 
-Start the Flask application by running:
+Access the Web Application:
 
-Copy code
-python app.py
-This will start the application on http://127.0.0.1:5000/ by default.
-
-<h3>Access the Web Application:</h3>
 ![main1](https://github.com/Mayukh-Mondal-Dev/Decentralized-Document-Verifcation-System/assets/103057066/781fec20-4dab-44ed-a5e6-969455b1a3b8)
 
 
@@ -87,37 +59,9 @@ Basic understanding of Python, Flask, SQLite, and QR code decoding.
 
 Ensure you have the required Python packages installed. You can install them using pip:
 
-Copy code
-pip install Flask cryptography opencv-python-headless pyzbar flask-cors
-<h3>Steps:</h3>
-
-Clone the Repository:
-
-Clone the repository to your local machine using Git:
-
-bash
-Copy code
-git clone https://github.com/yourusername/certificate-validation-app.git
-Replace yourusername with your actual GitHub username.
-
-Navigate to the Project Directory:
-
-bash
-Copy code
-cd certificate-validation-app
-Load Private Key:
-
 The application relies on a private key for decrypting certificate data. Ensure that the private_key.pem file is present in the project directory. If it's missing, provide your private key and save it as private_key.pem.
 
-Run the Application:
-
-Start the Flask application by running:
-
-Copy code
-python app.py
-The application will run on the default port 5050.
-
-<h3>Access the Web Application:</h3>
+Access the Web Application:
 ![main2](https://github.com/Mayukh-Mondal-Dev/Decentralized-Document-Verifcation-System/assets/103057066/db373f69-0bfc-47a6-9489-0465c03ed46a)
 
 
@@ -135,6 +79,7 @@ If the data does not match or the certificate is not found in the database, the 
 Customization:
 
 You can customize the application by modifying the HTML templates in the templates folder or by extending its functionality as needed.
+
 <h3>Deployment:</h3>
 
 If you intend to deploy this application in a production environment, consider using a production-ready web server such as Gunicorn or uWSGI and configure a reverse proxy like Nginx or Apache.
