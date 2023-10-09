@@ -33,11 +33,8 @@ You will see a list of certificates in a table format, including their details, 
 Validating Certificates:
 
 The application currently does not have a specific validation feature implemented. You can customize the validation logic in the validate_block route in app.py.
-<h3>Customization:</h3>
 
-You can customize the application by modifying the HTML templates in the templates folder or by extending its functionality as per your requirements.
-Shutdown the Application:
-
+<h3>Shutdown the Application:</h3>
 To stop the Flask application, press Ctrl + C in the terminal where the application is running.
 
 <h3>Cleanup:</h3>
@@ -77,9 +74,6 @@ The application will decode the QR code from the uploaded certificate image, com
 
 If the certificate data matches the decoded QR code content, the certificate is considered valid. The application will return the digital signature associated with the certificate.
 If the data does not match or the certificate is not found in the database, the application will display a "not valid" message.
-Customization:
-
-You can customize the application by modifying the HTML templates in the templates folder or by extending its functionality as needed.
 
 <h3>Deployment:</h3>
 
