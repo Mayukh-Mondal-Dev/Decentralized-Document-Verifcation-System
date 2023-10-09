@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,700&family=Roboto:wght@400;700&display=swap");
+
+/* Default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-text-color: black;
+    --secondary-text-color: grey;
+    --accent-color: lightblue;
+    --accent-dark-color: blue;
+    --padding-inline-section: 20px;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: var(--primary-text-color);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.25rem;
+    color: var(--secondary-text-color);
+    line-height: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.small-bold-text {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.container {
+    max-width: auto;
+    margin-inline: auto;
+    padding-inline: 200px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.semi-rounded-button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .banner-container {
+        padding-inline: 20px;
+        /* Adjust padding for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2.5rem;
+        /* Reduce h1 font size for smaller screens */
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        /* Reduce h2 font size for smaller screens */
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        /* Reduce h3 font size for smaller screens */
+    }
+
+    p {
+        font-size: 1rem;
+        /* Reduce paragraph font size for smaller screens */
+    }
+
+    .small-bold-text {
+        font-size: 0.875rem;
+        /* Reduce small-bold-text font size for smaller screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-container {
+        padding-inline: 50px;
+        /* Adjust padding for medium-sized screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-container {
+        padding-inline: 20px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .small-bold-text {
+        font-size: 0.875rem;
+        /* Reduce font size for smaller screens */
+    }
+
+    .button {
+        flex-direction: column;
+        /* Stack buttons vertically on small screens */
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .semi-rounded-button {
+        padding: 8px 16px;
+        /* Adjust padding for smaller screens */
+        font-size: 14px;
+        /* Adjust font size for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2rem;
+        /* Reduce h1 font size for smaller screens */
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        /* Reduce h2 font size for smaller screens */
+    }
+
+    h3 {
+        font-size: 1rem;
+        /* Reduce h3 font size for smaller screens */
+    }
+
+    p {
+        font-size: 0.875rem;
+        /* Reduce paragraph font size for smaller screens */
+    }
+
+    .small-bold-text {
+        font-size: 0.75rem;
+        /* Further reduce font size for smaller screens */
+    }
+
+    .semi-rounded-button {
+        padding: 6px 12px;
+        /* Further adjust padding for smaller screens */
+        font-size: 14px;
+        /* Further adjust font size for smaller screens */
+    }
+}
+
+.button-gap {
+    margin: 0 10px;
+    /* Adjust the margin value to control the gap width */
+}
+
+.main {
+    font-family: Arial, sans-serif;
+    background-color: rgb(102, 173, 173);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+}
+
+.registration-form {
+    padding-right: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.btn-submit {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}

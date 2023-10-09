@@ -284,19 +284,19 @@ def add_block():
     if request.method == 'POST':
         # Retrieve the form data submitted by the user
         data = {
-            'name': request.form['name'],
-            'email': request.form['email'],
-            'phnumber': request.form['phnumber'],
-            'coursename': request.form['coursename'],
-            'courseid': request.form['courseid'],
-            'instname': request.form['instname'],
-            'startdate': request.form['startdate'],
-            'enddate': request.form['enddate']
+            "name": request.form['name'],
+            "email": request.form['email'],
+            "phnumber": request.form['phnumber'],
+            "coursename": request.form['coursename'],
+            "courseid": request.form['courseid'],
+            "instname": request.form['instname'],
+            "startdate": request.form['startdate'],
+            "enddate": request.form['enddate']
         }
 
         public_key = g.public_key
 
-        blockchain.add_block(jsonify(data), public_key)
+        blockchain.add_block(str(json.dumps(data)), public_key)
         generated_qr_code = f"qr_code_{blockchain.counter}.png"
 
         response_data = {

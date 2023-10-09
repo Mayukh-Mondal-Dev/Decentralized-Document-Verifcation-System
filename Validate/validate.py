@@ -1,6 +1,6 @@
 import hashlib
 import os
-from flask import Flask, render_template, current_app, request, redirect, url_for, g
+from flask import Flask, render_template, current_app, request, redirect, url_for, g, jsonify, json
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
@@ -13,11 +13,14 @@ import threading
 import qrcode
 import cv2
 from pyzbar.pyzbar import decode
-
+from flask_cors import CORS, cross_origin
+import json
 
 port = "5050"
 
 app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 def load_private_key():
     if os.path.isfile("private_key.pem"):
@@ -27,10 +30,12 @@ def load_private_key():
     else:
         return None
 
+
 private_key = load_private_key()
 
 if private_key is None:
     raise Exception("Private key is not found!!")
+
 
 def read_qr_code(image_path):
     # Load the image containing the QR code
@@ -48,6 +53,7 @@ def read_qr_code(image_path):
     else:
         return None
 
+
 def is_data_present(conn, data_to_check):
     try:
         c = conn.cursor()
@@ -64,6 +70,7 @@ def is_data_present(conn, data_to_check):
         print("SQLite error:", e)
         return False
 
+
 def decrypt_data(encrypted_data_hex, private_key):
     try:
         encrypted_data = bytes.fromhex(encrypted_data_hex)
@@ -79,12 +86,14 @@ def decrypt_data(encrypted_data_hex, private_key):
     except Exception as e:
         print(e)
 
+
 def get_current_hash(encrypted_data):
-    conn = sqlite3.connect('logs.db')
+    conn = sqlite3.connect('../Generate/logs.db')
     c = conn.cursor()
 
     # Execute the SQL query to fetch the current_hash from the database
-    c.execute("SELECT current_hash FROM blocks WHERE encrypted_data=?", (encrypted_data,))
+    c.execute("SELECT current_hash FROM blocks WHERE encrypted_data=?",
+              (encrypted_data,))
     result = c.fetchone()
 
     conn.close()
@@ -95,27 +104,26 @@ def get_current_hash(encrypted_data):
         return None  # Return None if no row is found for the encrypted data
 
 
-
 @app.route('/', methods=['GET', 'POST'])
+@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def index():
     if request.method == 'POST':
         data = {
-            'name': request.form['name'],
-            'email': request.form['email'],
-            'phnumber': request.form['phnumber'],
-            'coursename': request.form['coursename'],
-            'courseid': request.form['courseid'],
-            'instname': request.form['instname'],
-            'startdate': request.form['startdate'],
-            'enddate': request.form['enddate']
+            "courseid": request.form['courseid'],
+            "coursename": request.form['coursename'],
+            "email": request.form['email'],
+            "enddate": request.form['enddate'],
+            "instname": request.form['instname'],
+            "name": request.form['name'],
+            "phnumber": request.form['phnumber'],
+            "startdate": request.form['startdate'],
         }
 
-        
         # Extract QR code content from uploaded image (you'll need a QR code library)
         file = request.files['certificate']
 
         # Set the directory path for storing the uploaded files
-        upload_directory = 'C:\\Users\\Mayukh Mondal\\Desktop\\BlockVerificationSystem\\'                                     #Anish Change the path
+        upload_directory = './static/uploads'
 
         # Save the file to the specified directory
         file.save(os.path.join(upload_directory, file.filename))
@@ -123,35 +131,44 @@ def index():
         # Optionally, you can also store the filepath in a variable for further processing or database storage
         filepath = os.path.join(upload_directory, file.filename)
 
-        encrypted_data = read_qr_code("certificate.png")
+        encrypted_data = read_qr_code(filepath)
 
         print(type(data))
         print(data)
 
-        data_str = str(data)
+        data_str = json.dumps(data)
 
         private_key = load_private_key()
-        
-        db_path = "logs.db"
+
+        db_path = "../Generate/logs.db"
         conn = sqlite3.connect(db_path)
         # Check if the QR code content exists in the database
         if is_data_present(conn, encrypted_data):
             real_data = decrypt_data(encrypted_data, private_key)
             print(encrypted_data)
             print(real_data)
-            
-            if (data_str == real_data):
+            print(str(data_str))
+
+            if (str(data_str) == real_data):
+                print("valid")
                 signature = get_current_hash(encrypted_data)
                 print(signature)
-                return render_template('valid.html', signature=signature)
+                response_data = {
+                    "signature": signature
+                }
+                return app.response_class(
+                    response=json.dumps(response_data),
+                    status=200
+                )
             else:
-                return render_template('not_valid.html')
-            
+                print("not valid")
+                return jsonify("not valid")
+
         else:
             return render_template('not_valid.html')
-            
-    
+
     return render_template('index_2.html')
+
 
 if __name__ == '__main__':
     app.run(port=port, debug=True)
