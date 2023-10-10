@@ -92,7 +92,7 @@ async function generateCertificate() {
         certificateContext.font = "bold 50px Arial";
         certificateContext.fillText(enddate, 850, 935);
 
-        certificateContext.drawImage(generated_qr_code_img, 1590, 1020, 250, 250);
+        certificateContext.drawImage(generated_qr_code_img, 1590, 1010, 320, 320);
 
         // Here we convert canvas to data URL (PNG)
         const certificateDataURL = certificateCanvas.toDataURL("image/png");

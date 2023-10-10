@@ -139,6 +139,8 @@ def index():
 
         private_key = load_private_key()
 
+        print(encrypted_data)
+
         if is_data_present(encrypted_data):
             print("H1")
             real_data = decrypt_data(encrypted_data, private_key)
