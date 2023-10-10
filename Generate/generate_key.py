@@ -10,7 +10,7 @@ def generate_private_key():
     if not os.path.isfile("private_key.pem"):
         private_key = rsa.generate_private_key(
             public_exponent=65537,
-            key_size=2048,
+            key_size=4096,
             backend=default_backend()
         )
         # Serialize and store the private key
