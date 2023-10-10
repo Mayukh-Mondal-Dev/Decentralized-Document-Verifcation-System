@@ -139,16 +139,14 @@ def index():
 
         private_key = load_private_key()
 
-        # db_path = "../Generate/logs.db"
-        # conn = sqlite3.connect(db_path)
-        # Check if the QR code content exists in the database
         if is_data_present(encrypted_data):
+            print("H1")
             real_data = decrypt_data(encrypted_data, private_key)
             print(encrypted_data)
             print(real_data)
             print(str(data_str))
 
-            if (str(data_str) == real_data):
+            if str(data_str) == real_data:
                 print("valid")
                 signature = get_current_hash(encrypted_data)
                 print(signature)
@@ -160,11 +158,17 @@ def index():
                     status=200
                 )
             else:
-                print("not valid")
-                return jsonify("not valid")
-
+                print("H2")
+                return app.response_class(
+                    response=json.dumps("Not Valid"),
+                    status=400
+                )
         else:
-            return render_template('not_valid.html')
+            print("H3")
+            return app.response_class(
+                response=json.dumps("Not Valid"),
+                status=400
+            )
 
     return render_template('index_2.html')
 

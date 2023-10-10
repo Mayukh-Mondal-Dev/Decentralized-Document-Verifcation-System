@@ -8,45 +8,45 @@ uploadButton.addEventListener("click", function () {
   }, 2000); // Simulate a 2-second upload process (you can adjust this time)
 });
 
-document
-  .getElementById("registration-form")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
-    // Retrieve and display form values (excluding the file input)
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const contact = document.getElementById("contact").value;
-    const courseName = document.getElementById("courseName").value;
-    const courseId = document.getElementById("courseId").value;
-    const instituteName = document.getElementById("instituteName").value;
-    const startDate = document.getElementById("startDate").value;
-    const endDate = document.getElementById("endDate").value;
-    const fileInput = document.getElementById("file");
+document.getElementById("registration-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  // Retrieve and display form values (excluding the file input)
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const contact = document.getElementById("contact").value;
+  const courseName = document.getElementById("courseName").value;
+  const courseId = document.getElementById("courseId").value;
+  const instituteName = document.getElementById("instituteName").value;
+  const startDate = document.getElementById("startDate").value;
+  const endDate = document.getElementById("endDate").value;
+  const fileInput = document.getElementById("file");
 
-    // Check if a file is selected
-    if (fileInput.files.length === 0) {
-      alert("Please select a PDF file for upload.");
-      return;
-    }
+  // Check if a file is selected
+  if (fileInput.files.length === 0) {
+    alert("Please select a PDF file for upload.");
+    return;
+  }
 
-    console.log("certificate uploaded: ", fileInput.files[0]);
+  console.log("certificate uploaded: ", fileInput.files[0]);
 
-    const formData = new FormData();
+  const formData = new FormData();
 
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("phnumber", contact);
-    formData.append("coursename", courseName);
-    formData.append("courseid", courseId);
-    formData.append("instname", instituteName);
-    formData.append("startdate", startDate);
-    formData.append("enddate", endDate);
-    formData.append("certificate", fileInput.files[0]);
+  formData.append("name", name);
+  formData.append("email", email);
+  formData.append("phnumber", contact);
+  formData.append("coursename", courseName);
+  formData.append("courseid", courseId);
+  formData.append("instname", instituteName);
+  formData.append("startdate", startDate);
+  formData.append("enddate", endDate);
+  formData.append("certificate", fileInput.files[0]);
 
-    const res = await fetch("http://127.0.0.1:5050", {
-      method: "POST",
-      body: formData,
-    });
+  const res = await fetch("http://127.0.0.1:5050", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (res.status === 200) {
     const { signature } = await res.json();
     console.log(signature);
 
@@ -73,4 +73,11 @@ document
       certificateLink.style.display = "block";
       certificateLink.click();
     };
-  });
+  } else if (res.status === 400) {
+    // Handle the "not valid" response here
+    uploadFeedback.textContent = "Validation failed. Certificate is not valid.";
+  } else {
+    // Handle other response statuses if needed
+    uploadFeedback.textContent = "An error occurred during validation.";
+  }
+});
