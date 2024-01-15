@@ -5,7 +5,7 @@ This README provides step-by-step instructions on setting up and running a Flask
 
 <h3>Prerequisites:</h3>
 
-Python 3.x installed on your system.
+Python 3.11 version or above installed on your system.
 
 Basic understanding of Python, Flask, and SQLite.
 
