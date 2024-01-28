@@ -1,0 +1,5 @@
+Flask
+cryptography
+qrcode
+opencv-python
+flask-cors
