@@ -64,3 +64,8 @@ The application will decode the QR code from the uploaded certificate image, com
 If the certificate data matches the decoded QR code content, the certificate is considered valid. The application will return the digital signature associated with the certificate.
 If the data does not match or the certificate is not found in the database, the application will display a "not valid" message.
 
+
+<h3>Architecture:</h3>
+
+![Untitled-2023-10-28-2107](https://github.com/Mayukh-Mondal-Dev/Decentralized-Document-Verifcation-System/assets/92180806/e12c393f-452d-46b8-ba9f-c1df344d2bc8)
+
